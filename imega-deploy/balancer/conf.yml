@@ -1,0 +1,9 @@
+version: "3.3"
+
+services:
+  imega-deploy-balancer:
+    image: imegadeploy/balancer:${TAG}
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 1
