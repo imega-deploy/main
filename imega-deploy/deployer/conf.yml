@@ -16,6 +16,8 @@ services:
       - service.slack.webhook
     volumes:
       - /run/docker.sock:/var/run/docker.sock
+    networks:
+      - host
     ports:
       - "11000:80"
     deploy:
