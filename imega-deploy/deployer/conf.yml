@@ -1,9 +1,26 @@
 version: "3.3"
 
+networks:
+  default:
+    external:
+      name: deployer
+
 services:
   imega-deploy-deployer:
     image: imegadeploy/deployer:${TAG}
+    environment:
+      - TOKEN=/run/secrets/imega-deploy.deployer.token
+      - WEBHOOK=/run/secrets/service.slack.webhook
+    secrets:
+      - imega-deploy.deployer.token
+      - service.slack.webhook
     ports:
       - "11000:80"
     deploy:
       replicas: 1
+
+secrets:
+  imega-deploy.deployer.token:
+    external: true
+  service.slack.webhook:
+    external: true
