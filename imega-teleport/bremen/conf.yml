@@ -1,0 +1,7 @@
+version: "3.3"
+
+services:
+  bremen:
+    image: imegateleport/bremen:${TAG}
+    deploy:
+      replicas: 1

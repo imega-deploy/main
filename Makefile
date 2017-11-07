@@ -6,3 +6,6 @@ deploy-imega-deploy-balancer:
 
 deploy-imega-teleport-bus:
 	docker stack deploy -c imega-teleport/rabbitmq/conf.yml imega-teleport-bus
+
+deploy-imega-teleport-bremen:
+	TAG=$(TAG) docker stack deploy -c imega-teleport/bremen/conf.yml imega-teleport-bremen
