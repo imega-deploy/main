@@ -3,12 +3,15 @@ version: "3.3"
 networks:
   net-deployer:
     external: true
+  net-teleport:
+    external: true
 
 services:
   imega-deploy-balancer:
     image: imegadeploy/balancer:${TAG}
     networks:
       - net-deployer
+      - net-teleport
     ports:
       - "80:80"
     deploy:

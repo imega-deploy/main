@@ -1,5 +1,10 @@
 version: "3.3"
 
+networks:
+  default:
+    external:
+      name: net-teleport
+
 services:
   bus:
     image: rabbitmq:3.6.12-alpine
