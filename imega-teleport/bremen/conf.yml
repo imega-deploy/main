@@ -6,7 +6,7 @@ networks:
       name: net-teleport
 
 services:
-  bremen:
+  imega-teleport-bremen:
     image: imegateleport/bremen:${TAG}
     deploy:
       replicas: 1
