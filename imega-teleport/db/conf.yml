@@ -5,6 +5,9 @@ networks:
     external:
       name: net-teleport
 
+volumes:
+  teleport-db:
+
 services:
   imega-teleport-db:
     image: mysql:5.7.19
