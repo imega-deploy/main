@@ -8,5 +8,11 @@ networks:
 services:
   imega-teleport-auth:
     image: imegateleport/auth:${TAG}
+    environment:
+      - TELEPORTDB_HOST=imega-teleport-db
+      - TELEPORTDB_PORT=3306
+      - TELEPORTDB_USER=root
+      - TELEPORTDB_PASS=qwerty
+      - TELEPORTDB_NAME=teleport
     deploy:
       replicas: 1
