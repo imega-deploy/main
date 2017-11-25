@@ -8,11 +8,11 @@ networks:
 services:
   imega-teleport-db:
     image: mysql:5.7.19
-      environment:
-        - MYSQL_ROOT_PASSWORD=qwerty
-        - MYSQL_DATABASE=teleport
-      volumes:
-        - ./imega-teleport/db/sql:/docker-entrypoint-initdb.d
-        - teleport-db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=qwerty
+      - MYSQL_DATABASE=teleport
+    volumes:
+      - ./imega-teleport/db/sql:/docker-entrypoint-initdb.d
+      - teleport-db:/var/lib/mysql
     deploy:
       replicas: 1
