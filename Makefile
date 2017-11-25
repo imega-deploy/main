@@ -12,3 +12,6 @@ deploy-imega-teleport-bremen:
 
 deploy-imega-teleport-auth:
 	TAG=$(TAG) docker stack deploy -c imega-teleport/auth/conf.yml imega-teleport-auth
+
+deploy-imega-teleport-db:
+	TAG=$(TAG) docker stack deploy -c imega-teleport/db/conf.yml imega-teleport-db
