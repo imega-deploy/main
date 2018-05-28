@@ -1,3 +1,9 @@
+create_network:
+	docker network create --driver overlay --attachable $NETWORK
+
+create_volume:
+	docker volume create $VOLUME
+
 deploy-imega-deploy-deployer:
 	TAG=$(TAG) docker stack deploy -c imega-deploy/deployer/conf.yml imega-deploy-deployer
 
@@ -15,3 +21,6 @@ deploy-imega-teleport-auth:
 
 deploy-imega-teleport-db:
 	TAG=$(TAG) docker stack deploy -c imega-teleport/db/conf.yml imega-teleport-db
+
+deploy-imega-deploy-log:
+	docker stack deploy -c imega-deploy/log/conf.yml imega-deploy-log
