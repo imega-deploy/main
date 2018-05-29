@@ -5,6 +5,8 @@ networks:
     external: true
   net-teleport:
     external: true
+  esnet:
+    external: true
 
 services:
   imega-deploy-balancer:
@@ -12,6 +14,7 @@ services:
     networks:
       - net-deployer
       - net-teleport
+      - esnet
     ports:
       - "80:80"
     deploy:

@@ -5,10 +5,12 @@ volumes:
     driver: local
 
 networks:
-  esnet:
+  default:
+    external:
+      name: esnet
 
 services:
-  elasticsearch:
+  imega-log-elasticsearch:
     image: elastic/elasticsearch:6.2.4
     environment:
       - cluster.name=single-node
@@ -25,11 +27,10 @@ services:
     networks:
       - esnet
 
-  kibana:
-    image: docker.elastic.co/kibana/kibana:6.2.4
+  imega-log-kibana:
+    image: elastic/kibana:6.2.4
     environment:
-      SERVER_NAME: log.imega.ru
-      ELASTICSEARCH_URL: elasticsearch
+      ELASTICSEARCH_URL: http://imega-log-elasticsearch:9200
     ports:
       - 5601:5601
     networks:
