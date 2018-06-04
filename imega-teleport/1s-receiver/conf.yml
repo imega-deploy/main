@@ -1,0 +1,12 @@
+version: "3.3"
+
+networks:
+  default:
+    external:
+      name: net-teleport
+
+services:
+  imega-teleport-1s-receiver:
+    image: imegateleport/1s-receiver:${TAG}
+    deploy:
+      replicas: 1

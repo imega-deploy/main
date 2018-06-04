@@ -16,6 +16,9 @@ deploy-imega-teleport-bus:
 deploy-imega-teleport-bremen:
 	TAG=$(TAG) docker stack deploy -c imega-teleport/bremen/conf.yml imega-teleport-bremen
 
+deploy-imega-teleport-1s-receiver:
+	TAG=$(TAG) docker stack deploy -c imega-teleport/1s-receiver/conf.yml imega-teleport-1s-receiver
+
 deploy-imega-teleport-auth:
 	TAG=$(TAG) docker stack deploy -c imega-teleport/auth/conf.yml imega-teleport-auth
 
