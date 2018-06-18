@@ -6,7 +6,7 @@ networks:
       name: net-teleport
 
 services:
-  imega-teleport-commerceml2teleport:
+  commerceml2teleport:
     image: imegateleport/commerceml2teleport:${TAG}
     deploy:
       replicas: 1
