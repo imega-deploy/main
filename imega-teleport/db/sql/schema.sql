@@ -1,16 +1,36 @@
-CREATE DATABASE IF NOT EXISTS teleport CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `stock`
+  COLLATE 'utf8mb4_unicode_ci'
+  DEFAULT CHARSET 'utf8mb4';
 
-use teleport;
+USE stock;
 
-CREATE TABLE `users` (
-  `login` CHAR(36) NOT NULL,
-  `pass` CHAR(36) NOT NULL,
-  `payload`    JSON COMMENT 'Данные',
-  `created_at` DATETIME NOT NULL COMMENT 'Дата создания',
-  `expired_at` DATETIME NOT NULL COMMENT 'Дата окончания',
-  `active` TINYINT(1) DEFAULT 0,
-  PRIMARY KEY (`login`)
+CREATE TABLE `entities` (
+  `owner_id`    BINARY(16)   NOT NULL COMMENT 'Идентификатор владельца',
+  `entity_id`   BINARY(16)   NOT NULL COMMENT 'Идентификатор сущности',
+  `entity_type` VARCHAR(255) NOT NULL COMMENT 'Тип сущности',
+  `entity`      JSON         NOT NULL COMMENT 'сущность',
+  `created`     DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Дата создания записи',
+  `updated`     DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Дата обновления записи',
+  `removed`     TINYINT(2)   NOT NULL DEFAULT 0 COMMENT 'доступность записи для чтения',
+  PRIMARY KEY `id` (`owner_id`, `entity_id`),
+  UNIQUE KEY `entity_id` (`entity_id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT 'Сущности';
+
+CREATE TABLE `relations` (
+  `owner_id`   BINARY(16)          NOT NULL COMMENT 'Идентификатор сайта',
+  `subject_id` BINARY(16)          NOT NULL COMMENT 'Идентификатор субъекта',
+  `predicate`  VARCHAR(64)         NOT NULL COMMENT 'предикат',
+  `object_id`  BINARY(16)          NOT NULL COMMENT 'Идентификатор объекта',
+  `priority`   BIGINT(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Порядок выдачи по умолчанию',
+  `created`    DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Дата создания записи',
+  `updated`    DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Дата обновления записи',
+  `removed`    TINYINT(2)          NOT NULL DEFAULT 0,
+  PRIMARY KEY `id` (`owner_id`, `object_id`,`predicate`, `removed`),
+  KEY priority_index (`owner_id`, `subject_id`,`predicate`,`removed`, `priority`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
-  COMMENT 'teleport data';
+  COMMENT 'Связи между сущностями';
