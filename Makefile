@@ -30,3 +30,6 @@ deploy-imega-deploy-log:
 
 deploy-imega-teleport-commerceml2teleport:
 	TAG=$(TAG) docker stack deploy -c imega-teleport/commerceml2teleport/conf.yml imega-teleport
+
+deploy-imega-teleport-teleport-server:
+	TAG=$(TAG) docker stack deploy -c imega-teleport/teleport-server/conf.yml imega-teleport-teleport-server

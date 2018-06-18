@@ -1,0 +1,12 @@
+version: "3.3"
+
+networks:
+  default:
+    external:
+      name: net-teleport
+
+services:
+  teleport-server:
+    image: imegateleport/teleport-server:${TAG}
+    deploy:
+      replicas: 1
