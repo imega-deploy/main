@@ -9,7 +9,6 @@ services:
   imega-teleport-1s-receiver:
     image: imegateleport/1s-receiver:${TAG}
     environment:
-      - GRAPHQL_ENDPOINT_URI=teleport-server
       - FILE_LIMIT=1048576
     deploy:
       replicas: 1
