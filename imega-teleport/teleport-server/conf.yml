@@ -8,5 +8,11 @@ networks:
 services:
   teleport-server:
     image: imegateleport/teleport-server:${TAG}
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=qwerty
+      - MYSQL_HOST=imega-teleport-db
+      - MYSQL_PORT=3306
+      - MYSQL_DBNAME=stock
     deploy:
       replicas: 1
