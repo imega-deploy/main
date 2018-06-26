@@ -1,8 +1,8 @@
 create_network:
-	docker network create --driver overlay --attachable $NETWORK
+	docker network create --driver overlay --attachable $(NETWORK)
 
 create_volume:
-	docker volume create $VOLUME
+	docker volume create $(VOLUME)
 
 deploy-imega-deploy-deployer:
 	TAG=$(TAG) docker stack deploy -c imega-deploy/deployer/conf.yml imega-deploy-deployer

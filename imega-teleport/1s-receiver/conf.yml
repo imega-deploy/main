@@ -5,10 +5,16 @@ networks:
     external:
       name: net-teleport
 
+volumes:
+  teleport-storage:
+    external: true
+
 services:
   imega-teleport-1s-receiver:
     image: imegateleport/1s-receiver:${TAG}
     environment:
       - FILE_LIMIT=1048576
+    volumes:
+      - teleport-storage:/data
     deploy:
       replicas: 1

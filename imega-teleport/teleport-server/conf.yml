@@ -5,6 +5,10 @@ networks:
     external:
       name: net-teleport
 
+volumes:
+  teleport-storage:
+    external: true
+
 services:
   teleport-server:
     image: imegateleport/teleport-server:${TAG}
@@ -19,6 +23,8 @@ services:
     secrets:
       - imega-teleport.private.key
       - imega-teleport.public.key
+    volumes:
+      - teleport-storage:/data
     deploy:
       replicas: 1
 
