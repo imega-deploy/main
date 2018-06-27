@@ -12,6 +12,8 @@ volumes:
 services:
   commerceml2teleport:
     image: imegateleport/commerceml2teleport:${TAG}
+    environment:
+      - TELEPORT_STORAGE=/data/source
     volumes:
       - teleport-storage:/data
     deploy:
