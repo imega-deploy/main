@@ -5,8 +5,14 @@ networks:
     external:
       name: net-teleport
 
+volumes:
+  teleport-storage:
+    external: true
+
 services:
   commerceml2teleport:
     image: imegateleport/commerceml2teleport:${TAG}
+    volumes:
+      - teleport-storage:/data
     deploy:
       replicas: 1
