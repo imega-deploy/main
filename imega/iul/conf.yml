@@ -8,5 +8,7 @@ networks:
 services:
   imega-iul:
     image: imega/iul:${TAG}
+    ports:
+      - "12000:8080"
     deploy:
       replicas: 1
