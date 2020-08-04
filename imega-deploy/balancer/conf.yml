@@ -7,6 +7,8 @@ networks:
     external: true
   esnet:
     external: true
+  net-imega-iul:
+    external: true
 
 services:
   imega-deploy-balancer:
