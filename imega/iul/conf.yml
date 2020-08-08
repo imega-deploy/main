@@ -9,4 +9,8 @@ services:
   imega-iul:
     image: imega/iul:${TAG}
     deploy:
-      replicas: 1
+      replicas: 2
+      restart_policy:
+        delay: 10s
+        max_attempts: 5
+        window: 380s
