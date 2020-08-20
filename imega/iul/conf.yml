@@ -9,8 +9,10 @@ services:
   imega-iul:
     image: imega/iul:${TAG}
     environment:
-      - HTTP_READTIMEOUT=150
-      - HTTP_WRITETIMEOUT=120
+      - COMMIT=${TAG}
+      - LOG_LEVEL=debug
+      - HTTP_READTIMEOUT=300
+      - HTTP_WRITETIMEOUT=300
     deploy:
       replicas: 2
       restart_policy:
