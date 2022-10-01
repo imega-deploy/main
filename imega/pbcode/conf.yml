@@ -1,0 +1,21 @@
+version: "3"
+
+networks:
+  default:
+    external:
+      name: net-imega-pbcode
+
+services:
+  imega-pbcode:
+    image: imega/pbcode:${TAG}
+    environment:
+      - COMMIT=${TAG}
+      - LOG_LEVEL=debug
+      - HTTP_READTIMEOUT=300
+      - HTTP_WRITETIMEOUT=300
+    deploy:
+      replicas: 1
+      restart_policy:
+        delay: 10s
+        max_attempts: 5
+        window: 380s

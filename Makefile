@@ -36,3 +36,9 @@ deploy-imega-teleport-teleport-server:
 
 deploy-imega-iul:
 	TAG=$(TAG) docker stack deploy -c imega/iul/conf.yml imega-iul
+
+deploy-imega-pbcode:
+	TAG=$(TAG) docker stack deploy -c imega/pbcode/conf.yml imega-pbcode
+
+deploy-findbed-app:
+	TAG=$(TAG) docker stack deploy -c findbed/app/conf.yml findbed-app
