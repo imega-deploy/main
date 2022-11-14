@@ -18,3 +18,17 @@ services:
         delay: 10s
         max_attempts: 5
         window: 380s
+  findbed-mysql:
+    image: mariadb:10.7.4
+    environment:
+      - MARIADB_ROOT_PASSWORD=qwerty
+    volumes:
+      - findbed-volume:/var/lib/mysql
+  findbed-zinc:
+    image: public.ecr.aws/zinclabs/zinc:latest
+    environment:
+      - ZINC_DATA_PATH=/data
+      - ZINC_FIRST_ADMIN_USER=admin
+      - ZINC_FIRST_ADMIN_PASSWOD=123
+    volumes:
+      - findbed-volume-2:/data
