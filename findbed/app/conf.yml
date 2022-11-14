@@ -5,6 +5,12 @@ networks:
     external:
       name: net-findbed-app
 
+volumes:
+  findbed-volume:
+    driver: local
+  findbed-volume-2:
+    driver: local
+
 services:
   findbed-app:
     image: registry.github.com/findbed/app:${TAG}
@@ -18,17 +24,19 @@ services:
         delay: 10s
         max_attempts: 5
         window: 380s
+
   findbed-mysql:
     image: mariadb:10.7.4
     environment:
       - MARIADB_ROOT_PASSWORD=qwerty
     volumes:
       - findbed-volume:/var/lib/mysql
+
   findbed-zinc:
-    image: public.ecr.aws/zinclabs/zinc:latest
+    image: public.ecr.aws/zinclabs/zinc:0.3.5
     environment:
       - ZINC_DATA_PATH=/data
       - ZINC_FIRST_ADMIN_USER=admin
-      - ZINC_FIRST_ADMIN_PASSWOD=123
+      - ZINC_FIRST_ADMIN_PASSWORD=123
     volumes:
       - findbed-volume-2:/data
